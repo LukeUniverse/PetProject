@@ -20,31 +20,26 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import code.cards.AbstractEasyCard;
 import code.cards.cardvars.AbstractEasyDynamicVariable;
-import code.cards.cardvars.SecondDamage;
-import code.cards.cardvars.SecondMagicNumber;
-import code.potions.AbstractEasyPotion;
 import code.relics.AbstractEasyRelic;
 import code.util.ProAudio;
 import java.nio.charset.StandardCharsets;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 @SpireInitializer
-public class ModFile implements
+public class PetProject implements
         EditCardsSubscriber,
         EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
-        EditCharactersSubscriber,
         AddAudioSubscriber {
 
-    public static final String modID = "todomod"; //TODO: Change this.
+    public static final String ModID = "PetProject";
 
     public static String makeID(String idText) {
-        return modID + ":" + idText;
+        return ModID + ":" + idText;
     }
 
     public static Color characterColor = new Color(MathUtils.random(), MathUtils.random(), MathUtils.random(), 1); // This should be changed eventually
@@ -77,63 +72,42 @@ public class ModFile implements
         return "eng";
     }
 
-    public ModFile() {
+    public PetProject() {
         BaseMod.subscribe(this);
-
-        BaseMod.addColor(CharacterFile.Enums.TODO_COLOR, characterColor, characterColor, characterColor,
-                characterColor, characterColor, characterColor, characterColor,
-                ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
-                ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
-                CARD_ENERGY_L, TEXT_ENERGY);
     }
 
     public static String makePath(String resourcePath) {
-        return modID + "Resources/" + resourcePath;
+        return ModID + "Resources/" + resourcePath;
     }
 
     public static String makeImagePath(String resourcePath) {
-        return modID + "Resources/images/" + resourcePath;
+        return ModID + "Resources/images/" + resourcePath;
     }
 
     public static String makeRelicPath(String resourcePath) {
-        return modID + "Resources/images/relics/" + resourcePath;
+        return ModID + "Resources/images/relics/" + resourcePath;
     }
 
     public static String makePowerPath(String resourcePath) {
-        return modID + "Resources/images/powers/" + resourcePath;
+        return ModID + "Resources/images/powers/" + resourcePath;
     }
 
     public static String makeCharacterPath(String resourcePath)
     {
-        return modID + "Resources/images/char/" + resourcePath;
+        return ModID + "Resources/images/char/" + resourcePath;
     }
 
     public static String makeCardPath(String resourcePath) {
-        return modID + "Resources/images/cards/" + resourcePath;
+        return ModID + "Resources/images/cards/" + resourcePath;
     }
 
     public static void initialize() {
-        ModFile thismod = new ModFile();
-    }
-
-    @Override
-    public void receiveEditCharacters() {
-        BaseMod.addCharacter(new CharacterFile(CharacterFile.characterStrings.NAMES[1], CharacterFile.Enums.THE_TODO),
-            CHARSELECT_BUTTON, CHARSELECT_PORTRAIT, CharacterFile.Enums.THE_TODO);
-        
-        new AutoAdd(modID)
-            .packageFilter(AbstractEasyPotion.class)
-            .any(AbstractEasyPotion.class, (info, potion) -> {
-                if (potion.pool == null)
-                    BaseMod.addPotion(potion.getClass(), potion.liquidColor, potion.hybridColor, potion.spotsColor, potion.ID);
-                else
-                    BaseMod.addPotion(potion.getClass(), potion.liquidColor, potion.hybridColor, potion.spotsColor, potion.ID, potion.pool);
-            });
+        PetProject thismod = new PetProject();
     }
 
     @Override
     public void receiveEditRelics() {
-        new AutoAdd(modID)
+        new AutoAdd(ModID)
                 .packageFilter(AbstractEasyRelic.class)
                 .any(AbstractEasyRelic.class, (info, relic) -> {
                     if (relic.color == null) {
@@ -149,11 +123,11 @@ public class ModFile implements
 
     @Override
     public void receiveEditCards() {
-        new AutoAdd(modID)
+        new AutoAdd(ModID)
             .packageFilter(AbstractEasyDynamicVariable.class)
-            .any(DynamicVariable.class, (info, var) -> 
+            .any(DynamicVariable.class, (info, var) ->
                 BaseMod.addDynamicVariable(var));
-        new AutoAdd(modID)
+        new AutoAdd(ModID)
                 .packageFilter(AbstractEasyCard.class)
                 .setDefaultSeen(true)
                 .cards();
@@ -161,14 +135,14 @@ public class ModFile implements
 
     @Override
     public void receiveEditStrings() {
-        BaseMod.loadCustomStringsFile(CardStrings.class, modID + "Resources/localization/" + getLangString() + "/Cardstrings.json");
-        BaseMod.loadCustomStringsFile(RelicStrings.class, modID + "Resources/localization/" + getLangString() + "/Relicstrings.json");
-        BaseMod.loadCustomStringsFile(CharacterStrings.class, modID + "Resources/localization/" + getLangString() + "/Charstrings.json");
-        BaseMod.loadCustomStringsFile(PowerStrings.class, modID + "Resources/localization/" + getLangString() + "/Powerstrings.json");
-        BaseMod.loadCustomStringsFile(UIStrings.class, modID + "Resources/localization/" + getLangString() + "/UIstrings.json");
-        BaseMod.loadCustomStringsFile(OrbStrings.class, modID + "Resources/localization/" + getLangString() + "/Orbstrings.json");
-        BaseMod.loadCustomStringsFile(StanceStrings.class, modID + "Resources/localization/" + getLangString() + "/Stancestrings.json");
-        BaseMod.loadCustomStringsFile(PotionStrings.class, modID + "Resources/localization/" + getLangString() + "/Potionstrings.json");
+        BaseMod.loadCustomStringsFile(CardStrings.class, ModID + "Resources/localization/" + getLangString() + "/Cardstrings.json");
+        BaseMod.loadCustomStringsFile(RelicStrings.class, ModID + "Resources/localization/" + getLangString() + "/Relicstrings.json");
+        BaseMod.loadCustomStringsFile(CharacterStrings.class, ModID + "Resources/localization/" + getLangString() + "/Charstrings.json");
+        BaseMod.loadCustomStringsFile(PowerStrings.class, ModID + "Resources/localization/" + getLangString() + "/Powerstrings.json");
+        BaseMod.loadCustomStringsFile(UIStrings.class, ModID + "Resources/localization/" + getLangString() + "/UIstrings.json");
+        BaseMod.loadCustomStringsFile(OrbStrings.class, ModID + "Resources/localization/" + getLangString() + "/Orbstrings.json");
+        BaseMod.loadCustomStringsFile(StanceStrings.class, ModID + "Resources/localization/" + getLangString() + "/Stancestrings.json");
+        BaseMod.loadCustomStringsFile(PotionStrings.class, ModID + "Resources/localization/" + getLangString() + "/Potionstrings.json");
     }
 
     @Override
@@ -180,12 +154,12 @@ public class ModFile implements
     @Override
     public void receiveEditKeywords() {
         Gson gson = new Gson();
-        String json = Gdx.files.internal(modID + "Resources/localization/" + getLangString() + "/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
+        String json = Gdx.files.internal(ModID + "Resources/localization/" + getLangString() + "/Keywordstrings.json").readString(String.valueOf(StandardCharsets.UTF_8));
         com.evacipated.cardcrawl.mod.stslib.Keyword[] keywords = gson.fromJson(json, com.evacipated.cardcrawl.mod.stslib.Keyword[].class);
 
         if (keywords != null) {
             for (Keyword keyword : keywords) {
-                BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
+                BaseMod.addKeyword(ModID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
             }
         }
     }

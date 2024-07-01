@@ -1,6 +1,7 @@
 package code.cards;
 
 import basemod.abstracts.CustomCard;
+import code.util.CardArtRoller;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,11 +17,8 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.function.Consumer;
-import code.CharacterFile;
-import code.util.CardArtRoller;
-
-import static code.ModFile.makeImagePath;
-import static code.ModFile.modID;
+import static code.PetProject.makeImagePath;
+import static code.PetProject.ModID;
 import static code.util.Wiz.*;
 
 public abstract class AbstractEasyCard extends CustomCard {
@@ -50,11 +48,11 @@ public abstract class AbstractEasyCard extends CustomCard {
     private boolean needsArtRefresh = false;
 
     public AbstractEasyCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        this(cardID, cost, type, rarity, target, CharacterFile.Enums.TODO_COLOR);
+        this(cardID, cost, type, rarity, target, CardColor.COLORLESS);
     }
 
     public AbstractEasyCard(final String cardID, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        super(cardID, "", getCardTextureString(cardID.replace(modID + ":", ""), type),
+        super(cardID, "", getCardTextureString(cardID.replace(ModID + ":", ""), type),
                 cost, "", type, color, rarity, target);
         cardStrings = CardCrawlGame.languagePack.getCardStrings(this.cardID);
         rawDescription = cardStrings.DESCRIPTION;

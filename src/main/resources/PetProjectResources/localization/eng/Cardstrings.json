@@ -1,0 +1,19 @@
+{
+
+  "${ModID}:EasyModalChoiceDemo": {
+    "NAME": "Easy Modal Choice",
+    "DESCRIPTION": "Choose one: Draw !M! cards or gain !${ModID}:m2! Strength.",
+    "EXTENDED_DESCRIPTION": [
+      "Draw",
+      "Draw ",
+      " cards.",
+      "Strength",
+      "Gain ",
+      " Strength."
+    ]
+  },
+  "${ModID}:SpawnTentacle": {
+    "NAME": "Spawn Tentacle",
+    "DESCRIPTION": "Spawn one tentacle."
+  }
+}

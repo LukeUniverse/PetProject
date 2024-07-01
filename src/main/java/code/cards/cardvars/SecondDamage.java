@@ -3,7 +3,7 @@ package code.cards.cardvars;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import code.cards.AbstractEasyCard;
 
-import static code.ModFile.makeID;
+import static code.PetProject.makeID;
 
 public class SecondDamage extends AbstractEasyDynamicVariable {
 
