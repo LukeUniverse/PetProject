@@ -15,5 +15,10 @@
   "${ModID}:SpawnTentacle": {
     "NAME": "Spawn Tentacle",
     "DESCRIPTION": "Spawn one tentacle."
+  },
+
+  "${ModID}:SpawnShiba": {
+    "NAME": "Spawn Shiba",
+    "DESCRIPTION": "Spawn a shiba friend. <3"
   }
 }

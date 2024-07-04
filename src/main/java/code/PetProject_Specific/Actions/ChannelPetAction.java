@@ -9,37 +9,32 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import java.util.Iterator;
 import java.util.List;
 
+import static code.PetProject_Specific.Patches.PetsPatches.PlayerPets.Pets;
+
 public class ChannelPetAction extends AbstractGameAction {
-    private AbstractPet petType;
+    private AbstractPet PetToCreate;
 
-    private boolean autoEvoke;
 
-    public ChannelPetAction(AbstractPet newPetType) {
-        this(newPetType, true);
-    }
-
-    public ChannelPetAction(AbstractPet newPetType, boolean autoEvoke) {
-        this.autoEvoke = false;
+    public ChannelPetAction(AbstractPet PetToCreate) {
         this.duration = Settings.ACTION_DUR_FAST;
-        this.petType = newPetType;
-        this.autoEvoke = autoEvoke;
+        this.PetToCreate = PetToCreate;
     }
 
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST) {
-            if (this.autoEvoke) {
-                PetUtility.ChannelPet(this.petType);
-            } else {
+
                 List<AbstractPet> pets = (List<AbstractPet>)PetsPatches.PlayerPets.Pets.get(AbstractDungeon.player);
-                Iterator<AbstractPet> petsIterator = pets.iterator();
-                while (petsIterator.hasNext()) {
-                    AbstractPet o = petsIterator.next();
-                    if (o instanceof code.PetProject_Specific.Pets.EmptyPetSlot) {
-                        PetUtility.ChannelPet(this.petType);
-                        break;
-                    }
+                int amountOfPetsWeHave = pets.size();
+                if(amountOfPetsWeHave >= 3)
+                {
+                    //For now let's just hard cap at 3 pets and do nothing if trying to summon another.
+                    //Obviously we might want that to change though later down the line.
                 }
-            }
+                else{
+                        pets.add(PetToCreate);
+                        PetsPatches.PlayerPets.Pets.set(AbstractDungeon.player, pets);
+                }
+
             if (Settings.FAST_MODE) {
                 this.isDone = true;
                 return;

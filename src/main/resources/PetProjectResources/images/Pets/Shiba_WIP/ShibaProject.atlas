@@ -1,0 +1,55 @@
+
+ShibaProject.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+2BackBackLeg
+  rotate: false
+  xy: 279, 117
+  size: 107, 134
+  orig: 107, 134
+  offset: 0, 0
+  index: -1
+2head
+  rotate: false
+  xy: 279, 1
+  size: 145, 114
+  orig: 145, 114
+  offset: 0, 0
+  index: -1
+2BackFrontLeg
+  rotate: false
+  xy: 388, 117
+  size: 103, 139
+  orig: 103, 139
+  offset: 0, 0
+  index: -1
+2FrontBackLeg
+  rotate: false
+  xy: 128, 140
+  size: 52, 132
+  orig: 52, 132
+  offset: 0, 0
+  index: -1
+2FrontFrontLeg
+  rotate: false
+  xy: 1, 253
+  size: 77, 137
+  orig: 77, 137
+  offset: 0, 0
+  index: -1
+2Chonkpng
+  rotate: false
+  xy: 1, 1
+  size: 276, 137
+  orig: 276, 137
+  offset: 0, 0
+  index: -1
+2tail
+  rotate: false
+  xy: 1, 140
+  size: 125, 79
+  orig: 125, 79
+  offset: 0, 0
+  index: -1

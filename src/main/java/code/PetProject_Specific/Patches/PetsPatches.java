@@ -1,7 +1,6 @@
 package code.PetProject_Specific.Patches;
 
 import code.PetProject_Specific.Pets.AbstractPet;
-import code.PetProject_Specific.Pets.EmptyPetSlot;
 import code.PetProject_Specific.Util.PetUtility;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
@@ -62,36 +61,7 @@ public class PetsPatches {
         }
     }
 
-    @SpirePatch(clz = AbstractPlayer.class, method = "increaseMaxOrbSlots")
-    public static class GivePlayerDefaultEmptyPets {
-        @SpireInsertPatch(rloc = 0, localvars = {"amount", "playSfx"})
-        public static void IncreaseMaxOrbSlots(AbstractPlayer __instance, int amount, boolean playSfx) {
-            List<AbstractPet> pets = new ArrayList<>();
-            for (int i = 0; i < 3; i++) {
-                float xToUse, yToUse;
-                switch (i) {
-                    case 0:
-                        xToUse = 980.0F;
-                        yToUse = 540.0F;
-                        break;
-                    case 1:
-                        xToUse = 580.0F;
-                        yToUse = 600.0F;
-                        break;
-                    case 2:
-                        xToUse = 240.0F;
-                        yToUse = 380.0F;
-                        break;
-                    default:
-                        xToUse = 0.0F;
-                        yToUse = 0.0F;
-                        break;
-                }
-                pets.add(new EmptyPetSlot(xToUse, yToUse));
-            }
-            PetsPatches.PlayerPets.Pets.set(AbstractDungeon.player, pets);
-        }
-    }
+
 
     @SpirePatch(clz = GameActionManager.class, method = "callEndOfTurnActions")
     public static class PetOnEndOfTurnPatch {
